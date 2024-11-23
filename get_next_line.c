@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:47:19 by asoudani          #+#    #+#             */
-/*   Updated: 2024/11/22 21:13:35 by asoudani         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:25:03 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,71 @@
 
 char    *get_next_line(int fd)
 {
-    static char *saved;
-    char *D_line;
-    char *allocated;
-    int readen;
-    char *temp;
-    
+    static char *saved = NULL;
+    char        *realloced;
+    char        *returned_line;
+    int         readen;
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (NULL);
-    saved = NULL;
-    D_line = ft_strdup("");
-    if (!D_line)
-            return (NULL);
-    if (saved != NULL)
-        D_line = ft_strjoin(D_line, saved);
-        if (!D_line)
-            return (NULL);
-    allocated = malloc((BUFFER_SIZE + 1));
-    if (!allocated)
-        return (NULL);
-    readen = 0;
-    while(!ft_strchr(allocated, '\n'))
+    if (saved)
+        returned_line = ft_strdup(saved);
+    if (!saved)
+       returned_line = ft_strdup("");
+    if (!returned_line)
     {
-        readen = read(fd, allocated, BUFFER_SIZE);
-        if (readen == 0) break;
-        if (readen == -1) return (NULL);
-        
-        temp = ft_strjoin(D_line, allocated);
-        free(D_line);
-        D_line = temp;
+        return (NULL);
     }
-    cutter(&saved, &D_line);
-    return (free(allocated),D_line);
+    realloced = malloc(BUFFER_SIZE + 1);
+    if (!realloced)
+        return (NULL);
+    while (!ft_strchr(returned_line, '\n'))
+    {
+        readen = read(fd, realloced, BUFFER_SIZE);
+        if (readen == 0)
+        {
+            break;
+        }
+        if (readen == -1)
+            return(free(returned_line), free(realloced), NULL);
+        realloced[readen] = '\0';
+        char *temp = returned_line;
+        returned_line = ft_strjoin(returned_line, realloced);
+        free(temp);
+    }
+    free(realloced);
+    if (cutter(&saved, &returned_line) == 0)
+        return (NULL);
+    return (returned_line);
 }
 
-int main(int argc, char *argv)
-{
-    char *name = "file.text";
-    char *s;
-    int fd = open(name, O_RDWR | O_CREAT, 0644);
-    if(fd == -1)
-    {
-        dprintf(2,"the file %s failed and allocated -1\n", name);
-        return 1;
-    }
-    int i = 0;
-    while (i < 8)
-    {
-        s = get_next_line(fd);
-        printf("[%d] : %s", i + 1, s);
-        free(s);
-        if (i == 7)
-            printf("\n**********************\n");
-        else
-            printf("**********************\n");
-        i++;
-    }
-}
+// int main()
+// {
+//     int i = 1;
+//     int fd = open("files.txt", O_RDONLY | O_CREAT, 0644);
+//     if (fd == -1)
+//         return (0);
+//     char *s = get_next_line(fd);
+//     printf("[%d] : %s", i, s);
+//     free(s);
+//     s = get_next_line(fd);
+//     printf("[%d] : %s", ++i, s);
+//     free(s);
+//     s = get_next_line(fd);
+//     printf("[%d] : %s", ++i, s);
+//     free(s);
+//     s = get_next_line(fd);
+//     printf("[%d] : %s", ++i, s);
+//     free(s);
+//     s = get_next_line(fd);
+//     printf("[%d] : %s", ++i, s);
+//     free(s);
+//     s = get_next_line(fd);
+//     printf("[%d] : %s", ++i, s);
+//     free(s);
+//     s = get_next_line(fd);
+//     printf("[%d] : %s", ++i, s);
+//     free(s);
+//     s = get_next_line(fd);
+//     printf("[%d] : %s", ++i, s);
+//     free(s);
+// }

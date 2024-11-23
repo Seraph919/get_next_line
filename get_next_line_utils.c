@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:27:30 by asoudani          #+#    #+#             */
-/*   Updated: 2024/11/22 21:12:02 by asoudani         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:21:04 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int cutter(char **saved, char **line)
 	char *pointer_to_start;
 	if (!*line)
 		return (0);
-	if (pointer_to_start = ft_strchr(*line, '\n'))
+	if ((pointer_to_start = ft_strchr(*line, '\n')))
 	{
 		free(*saved);
 		*saved = ft_strdup(pointer_to_start + 1);
@@ -54,7 +54,7 @@ int cutter(char **saved, char **line)
 	}
 	free(*saved);
 	*saved = NULL;
-	return (0);
+	return (1);
 }
 char	*ft_strdup(const char *str1)
 {
@@ -64,9 +64,7 @@ char	*ft_strdup(const char *str1)
 	i = 0;
 	returned = malloc(sizeof(char) * ft_strlen(str1) + 1);
 	if (!returned)
-	{
 		return (NULL);
-	}
 	while (str1[i])
 	{
 		returned[i] = str1[i];
@@ -82,19 +80,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 	char	*returned;
 
-	if (!s1)
-		return (ft_strdup(((char *)s2)));
-	if (!s2)
-		return (ft_strdup(((char *)s1)));
 	if (!s1 && !s2)
-		return NULL;
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	i = -1;
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	returned = malloc(sizeof(char) * len1 + len2 + 1);
 	if (!returned)
 	{
-		// dprintf(2, "failed on strjoin\n");
 		return (NULL);
 	}
 	while (s1[++i])
