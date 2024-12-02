@@ -1,5 +1,9 @@
 # Get Next Line Project
 
+## Grade :
+
+![Screenshot from 2024-12-02 20-05-51](https://github.com/user-attachments/assets/0ac8f3cd-c3c3-4562-bdb7-e63065c840b2)
+
 ## Description
 
 This project involves implementing a function `get_next_line` in C that reads a line from a file descriptor. The function allows reading a file or standard input line by line, processing it efficiently without reading the entire file into memory at once.
