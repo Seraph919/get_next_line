@@ -1,5 +1,5 @@
 # Get Next Line Project
-
+Feading a line from a fd is too tedious :)
 ## Grade :
 
 ![Screenshot from 2024-12-02 20-05-51](https://github.com/user-attachments/assets/0ac8f3cd-c3c3-4562-bdb7-e63065c840b2)
