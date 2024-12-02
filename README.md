@@ -43,7 +43,7 @@ cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c
 - [C Programming Language](https://en.wikipedia.org/wiki/C_(programming_language)): Learn more about the C language.
 - [File Descriptors in C](https://www.geeksforgeeks.org/file-descriptors-in-c/): Understand file descriptors and their usage in C.
 - [Dynamic Memory Allocation in C](https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/): Learn about dynamic memory allocation in C.
-- [Seraph's](https://root-seeker-0af.notion.site/Seraph-vomiting-information-101b07b8c92b80b0b102efb19adf9156): my notes.
+- [Seraph vomiting information](https://root-seeker-0af.notion.site/Seraph-vomiting-information-101b07b8c92b80b0b102efb19adf9156): My notes so far.
 - 
 ## SOME BASICS
 
