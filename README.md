@@ -90,7 +90,3 @@ Buffer management involves handling memory efficiently with temporary data stora
 - Avoid using global variables and the `lseek()` function as per project guidelines.
 - Implement logical handling for reading from files and standard input efficiently.
 - Test your code extensively with different input scenarios.
-
-## Credits
-
-Created by [mes-salh].
