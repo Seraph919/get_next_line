@@ -61,6 +61,11 @@ char	*returned_line(char **stored, int readen)
 		temp_saved = *stored;
 		pos = ft_strchr(temp_saved, '\n');
 		*stored = ft_strdup(pos + 1);
+		if (*stored && **stored == '\0')
+		{
+			free(*stored);
+			*stored = NULL;
+		}
 		*(pos + 1) = '\0';
 		return (temp_saved);
 	}
